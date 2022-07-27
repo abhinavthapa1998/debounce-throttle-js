@@ -7,9 +7,14 @@ const updateDebounceText = debounce((text) => {
   debounceText.textContent = text;
 });
 
+const updateThrottleText = throttle((text) => {
+  throttleText.textContent = text;
+});
+
 input.addEventListener("input", (e) => {
   defaultText.textContent = e.target.value;
   updateDebounceText(e.target.value);
+  updateThrottleText(e.target.value);
 });
 
 function debounce(cb, delay = 1000) {
@@ -18,6 +23,18 @@ function debounce(cb, delay = 1000) {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       cb(...args);
+    }, delay);
+  };
+}
+
+function throttle(cb, delay = 1000) {
+  let shouldWait = false;
+  return (...args) => {
+    if (shouldWait) return;
+    cb(...args);
+    shouldWait = true;
+    setTimeout(() => {
+      shouldWait = false;
     }, delay);
   };
 }
