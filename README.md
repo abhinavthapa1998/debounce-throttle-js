@@ -1,2 +1,2 @@
 # debounce-throttle-js
-Created with CodeSandbox
+Basic Example implementing and demonstrating the difference between Debouncing and Throttling
